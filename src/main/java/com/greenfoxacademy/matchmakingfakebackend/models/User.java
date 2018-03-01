@@ -7,7 +7,7 @@ public abstract class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  protected int id;
+  protected String id;
   @Column(nullable = false)
   protected String email;
   @Column(name = "phone_number")
@@ -18,11 +18,11 @@ public abstract class User {
   public User() {
   }
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 
