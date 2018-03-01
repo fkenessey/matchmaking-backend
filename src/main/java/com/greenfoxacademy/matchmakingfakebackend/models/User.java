@@ -6,8 +6,8 @@ import javax.persistence.*;
 public abstract class User {
 
   @Id
-//  @GeneratedValue(strategy = GenerationType.AUTO)
-  protected String id;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  protected int id;
   @Column(nullable = false)
   protected String email;
   @Column(name = "phone_number")
@@ -18,11 +18,11 @@ public abstract class User {
   public User() {
   }
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(int id) {
     this.id = id;
   }
 
