@@ -6,7 +6,7 @@ import javax.persistence.*;
 public abstract class User {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+//  @GeneratedValue(strategy = GenerationType.AUTO)
   protected String id;
   @Column(nullable = false)
   protected String email;
