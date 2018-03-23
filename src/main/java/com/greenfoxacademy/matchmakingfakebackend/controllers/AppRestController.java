@@ -5,10 +5,7 @@ import com.greenfoxacademy.matchmakingfakebackend.models.Partner;
 import com.greenfoxacademy.matchmakingfakebackend.services.ApprenticeService;
 import com.greenfoxacademy.matchmakingfakebackend.services.PartnerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +19,18 @@ public class AppRestController {
   PartnerService partnerService;
 
   @RequestMapping(value = "/api/apprentice/all", method = RequestMethod.GET)
+  public List<Apprentice> listOfAllApprentices(@RequestParam(required = false) String cohort,
+                                               @RequestParam(required = false) String firstName) {
+
+    Apprentice apprentice = new Apprentice();
+
+    apprentice.setCohort(cohort);
+    apprentice.setFirstName(firstName);
+
+    return apprenticeService.superdooperlist(apprentice);
+  }
+
+  /*@RequestMapping(value = "/api/apprentice/all", method = RequestMethod.GET)
   public List<Apprentice> listOfAllApprentices() {
     return apprenticeService.getAll();
   }
@@ -31,9 +40,9 @@ public class AppRestController {
     return apprenticeService.getAllByCohort(cohort);
   }
 
-  @RequestMapping(value = "/api/apprentice/class/{cohortClass}", method = RequestMethod.GET)
-  public List<Apprentice> apprenticesByClass(@PathVariable String cohortClass) {
-    return apprenticeService.getAllByClassCohort(cohortClass);
+  @RequestMapping(value = "/api/apprentice/class", method = RequestMethod.GET)
+  public List<Apprentice> apprenticesByClass(@RequestParam(required = false) String cohortClass, @RequestParam(required = false) String email) {
+    return apprenticeService.getAllByClassCohort(cohortClass, email);
   }
 
   @RequestMapping(value = "api/apprentice/email/{email}", method = RequestMethod.GET)
@@ -54,7 +63,7 @@ public class AppRestController {
   @RequestMapping(value = "/api/apprentice/name/{firstName}/{lastName}", method = RequestMethod.GET)
   public Apprentice apprenticeByName(@PathVariable String firstName,@PathVariable String lastName) {
     return apprenticeService.getAllByName(firstName, lastName);
-}
+  }*/
 
   @RequestMapping(value = "/api/partner/all", method = RequestMethod.GET)
   public List<Partner> listOfPartners() {
